@@ -1,21 +1,71 @@
 # MedTrack_DV — Hospital Operations & Patient Analytics Dashboard
 
+> **Infosys Springboard Virtual Internship 7.0** · Data Visualization Project
+> Python (Pandas, NumPy) + Tableau · 4 integrated dashboards · 7 KPIs
+
+---
+
+## Live Dashboard
+
+**[View the interactive MedTrack_DV dashboard on Tableau Public](https://public.tableau.com/app/profile/alamanda.neelima/viz/MedTrack_DV_17907465161050/HospitalOverview)**
+
+[![Hospital Overview](docs/images/Hospital_Overview.png)](https://public.tableau.com/app/profile/alamanda.neelima/viz/MedTrack_DV_17907465161050/HospitalOverview)
+
+---
+
 ## Project Overview
 
-**MedTrack_DV** is a hospital operations and patient analytics dashboard project developed to transform hospital operational and patient-related data into interactive Tableau dashboards.
+**MedTrack_DV** is a hospital operations and patient analytics project that turns hospital and patient admission data into a unified, interactive Tableau workbook.
 
-The project focuses on hospital performance, patient admissions, patient flow, department efficiency, and healthcare resource utilization. The final solution brings the analysis together in a unified Tableau workbook for exploring operational trends and supporting data-driven decision-making.
+The project covers hospital performance, patient admissions, patient flow, department efficiency, and healthcare resource utilization. The final deliverable is a single Tableau workbook (`.twbx`) with four interconnected dashboards:
+
+1. Hospital Overview
+2. Patient Flow
+3. Department Analytics
+4. Resource Utilization
+
+> **Note:** This project uses publicly available datasets and is built for educational and portfolio purposes. See [Dataset Sources](#dataset-sources) for details.
+
+---
+
+## Dashboard Preview
+
+### 1. Hospital Overview
+![Hospital Overview](docs/images/Hospital_Overview.png)
+
+### 2. Patient Flow
+![Patient Flow](docs/images/Patient_Flow.png)
+
+### 3. Department Analytics
+![Department Analytics](docs/images/Department_Analytics.png)
+
+### 4. Resource Utilization
+![Resource Utilization](docs/images/Resource_Utilization.png)
+
+---
+
+## My Contribution
+
+- Collected and integrated hospital datasets using Python
+- Cleaned and transformed the data in a Jupyter notebook (Pandas)
+- Engineered 7 healthcare KPIs in Python
+- Planned, prototyped, and built all 4 Tableau dashboards
+- Integrated global filters, navigation, and a parameter action
+- Tested the workbook and documented the project
+
+---
 
 ## Project Objectives
 
-- Analyze hospital admissions and patient activity.
-- Monitor hospital performance using healthcare KPIs.
-- Analyze patient admission, discharge, movement, and stay patterns.
-- Compare department-level performance.
-- Analyze hospital resource utilization.
-- Provide interactive filters and dashboard navigation.
-- Integrate four related Tableau dashboards into a single workbook.
-- Provide a structured data-processing and dashboard workflow.
+- Analyze hospital admissions and patient activity
+- Monitor hospital performance using healthcare KPIs
+- Analyze admission, discharge, movement, and stay patterns
+- Compare department-level performance
+- Analyze hospital resource utilization
+- Provide interactive filters and dashboard navigation
+- Integrate four related dashboards into a single workbook
+
+---
 
 ## Project Workflow
 
@@ -37,71 +87,74 @@ Testing & Validation
 Documentation & Delivery
 ```
 
-# Milestone 1 — Data Collection & Preparation
+---
 
-## Module 1: Hospital Data Collection
+## Dataset Sources
 
-Publicly available hospital-related datasets were collected and integrated for hospital operations analysis.
+| File | Location | Used For |
+|---|---|---|
+| Hospital Operation Dataset.csv | `data/raw_sources/` | Patient-level records (age, gender, department, diagnosis, doctor, insurance, readmission) |
+| Hospitals_and_Beds_statewise.csv | `data/raw_sources/` | Number of hospitals and beds available per state |
+| ICU beds count in India - Statewise.csv | `data/raw_sources/` | ICU beds per state |
+| hospital_final_dataset(row_level).csv | `data/reference/` | Mentor-provided reference dataset for hospital-related columns |
 
-### Deliverables
+### Data Integration Note
+
+The public patient dataset has no State column and no usable dates. To demonstrate the end-to-end data integration workflow:
+
+- States were randomly assigned to patient records from the hospital dataset (`random_state=42`).
+- Admission and discharge dates were generated, and Length of Stay was recalculated from them.
+- Doctor IDs were mapped to consistent doctor names.
+- Hospital-related columns from the mentor reference dataset were repeated to match the patient dataset size.
+
+Because of this, state-level and date-based trends in the dashboards are **illustrative, not real hospital statistics**.
+
+---
+
+## Milestone 1 — Data Collection & Preparation
+
+### Module 1: Hospital Data Collection
+
+Hospital, bed, ICU, and patient admission datasets were collected and merged into one raw dataset.
+
+**Deliverables**
 
 ```text
 data/neelima-hospital_raw_data.csv
 scripts/neelima-data_collection.py
 ```
 
-The source datasets used during preparation were used as working/reference inputs and are not part of the milestone deliverables.
-
-## Module 2: Data Cleaning & Transformation
+### Module 2: Data Cleaning & Transformation
 
 The collected data was cleaned and transformed into a Tableau-ready dataset.
 
-### Deliverables
+**Deliverables**
 
 ```text
 data/neelima-hospital_cleaned.csv
 notebooks/neelima-hospital_cleaning.ipynb
 ```
 
-The cleaning workflow prepares the data for KPI engineering and dashboard development.
+---
 
-# Milestone 2 — KPI Engineering & Dashboard Planning
+## Milestone 2 — KPI Engineering & Dashboard Planning
 
-## Module 3: Hospital KPI Engineering
+### Module 3: Hospital KPI Engineering
 
-KPI generation is implemented in:
+KPIs are calculated in Python and saved to the final Tableau-ready dataset.
 
-```text
-scripts/neelima-generate_hospital_kpis.py
-```
-
-Final Tableau-ready dataset:
+**Deliverables**
 
 ```text
 data/neelima-hospital_final_dataset.xlsx
+scripts/neelima-generate_hospital_kpis.py
 ```
 
-### KPIs
+### Module 4: Dashboard Planning & Prototyping
 
-1. Total Admissions
-2. Occupancy Rate
-3. Average Length of Stay
-4. Readmission Rate
-5. Bed Utilization Rate
-6. Department Efficiency Score
+Layouts, filters, navigation, dashboard actions, and department comparisons were planned for all four dashboards.
 
-An additional **Staff Utilization Rate** KPI was also generated and used in the project.
-
-## Module 4: Dashboard Planning & Prototyping
-
-The dashboard planning stage defined the layout and interaction approach for:
-
-1. Hospital Overview
-2. Patient Flow
-3. Department Analytics
-4. Resource Utilization
-
-### Deliverables
+**Deliverables**
 
 ```text
 dashboard/module4/
@@ -109,85 +162,61 @@ dashboard/module4/
 └── medtrack_prototype.twbx
 ```
 
-The planning covers layouts, filters, navigation, dashboard actions, parameter interaction, and department comparisons.
+---
 
-# Milestone 3 — Dashboard Development
+## Milestone 3 — Dashboard Development
 
-## Module 5: Hospital Overview & Patient Flow
+### Module 5: Hospital Overview & Patient Flow
 
-### Hospital Overview
-
-Includes:
+**Hospital Overview**
 
 - Admissions overview
 - Hospital performance KPIs
 - Occupancy monitoring
 - Readmission analysis
-- Monthly operational/patient trends
-- Patient-load analysis
-- State-based analysis
-- Department-based analysis
+- Monthly operational trends
+- State-based and department-based analysis
 
-### Patient Flow
-
-Includes:
+**Patient Flow**
 
 - Admission trends
 - Discharge tracking
-- Patient movement analysis
-- Patient transfer analysis
+- Patient movement and transfer analysis
 - Average stay analysis
-- Patient-load/peak-load analysis
+- Peak patient-load monitoring
 
-### Deliverable
+**Deliverable:** `dashboard/module5/medtrack_dashboard_v1.twbx`
 
-```text
-dashboard/module5/
-└── medtrack_dashboard_v1.twbx
-```
+### Module 6: Department Analytics & Resource Utilization
 
-## Module 6: Department Analytics & Resource Utilization
-
-### Department Analytics
-
-Includes:
+**Department Analytics**
 
 - Department performance analysis
 - Patient volume by department
 - Readmission by department
 - Department efficiency comparison
 - Treatment capacity analysis
-- Department-level stay and transfer analysis
 
-### Resource Utilization
-
-Includes:
+**Resource Utilization**
 
 - Bed utilization analysis
-- Staff utilization/allocation analysis
+- Staff utilization / allocation
 - Equipment utilization tracking
 - Capacity planning insights
 - Resource availability analysis
 
-### Dashboard Integration
+**Dashboard Integration**
 
-The final dashboard suite includes:
-
-- Global State filtering
-- Global Department filtering
-- Dashboard navigation
-- Dashboard actions
+- Global State and Department filters
+- Navigation controls between dashboards
 - Department parameter action
 - Dashboard linking
 
-### Deliverable
+**Deliverable:** `dashboard/module6/MedTrack_DV.twbx`
 
-```text
-dashboard/module6/
-└── MedTrack_DV.twbx
-```
+---
 
-# Dashboard Suite
+## Dashboard Guide
 
 ```text
 Hospital Overview
@@ -197,79 +226,62 @@ Hospital Overview
        └── Resource Utilization
 ```
 
-## Interactive Features
+| Feature | What it does |
+|---|---|
+| State filter | Shows analysis for a selected state |
+| Department filter | Focuses analysis on one department |
+| Navigation controls | Move between the four dashboards |
+| Parameter action | Passes a selected department into a Tableau parameter |
 
-### Global Filters
+**How to view:**
 
-**State:** Allows analysis to be viewed for different states.
+- Online: open the [Tableau Public link](https://public.tableau.com/app/profile/alamanda.neelima/viz/MedTrack_DV_17907465161050/HospitalOverview)
+- Offline: download `dashboard/module6/MedTrack_DV.twbx` and open it in Tableau Desktop or Tableau Public
 
-**Department:** Allows analysis to be focused on individual departments.
+---
 
-### Navigation
-
-Navigation controls allow users to move between dashboard views within the final workbook.
-
-### Parameter Action
-
-A Department Parameter Action is implemented. A department selection is passed into a Tableau parameter and used for dashboard interaction.
-
-# KPI Definitions
+## KPI Definitions
 
 | KPI | Description |
 |---|---|
-| Total Admissions | Total number of admissions represented in the hospital dataset. |
-| Occupancy Rate | Measures hospital occupancy based on the available patient and bed information. |
-| Average Length of Stay | Average duration of patient stay. |
-| Readmission Rate | Measures the proportion of patients represented as readmissions. |
-| Bed Utilization Rate | Measures the utilization of available hospital beds. |
-| Department Efficiency Score | Measures department-level operational efficiency using the project KPI calculation. |
-| Staff Utilization Rate | Additional KPI used to analyze staff utilization. |
+| Total Admissions | Total number of admissions in the dataset |
+| Occupancy Rate | Hospital occupancy based on patient and bed information |
+| Average Length of Stay | Average duration of patient stay |
+| Readmission Rate | Proportion of patients who were readmitted |
+| Bed Utilization Rate | Utilization of available hospital beds |
+| Department Efficiency Score | Department-level operational efficiency score |
+| Staff Utilization Rate | Additional KPI for staff utilization |
 
-KPI calculations are implemented in:
+Calculations: `scripts/neelima-generate_hospital_kpis.py`
 
-```text
-scripts/neelima-generate_hospital_kpis.py
-```
+---
 
-# Healthcare Operations Methodology
+## Healthcare Operations Methodology
 
-1. **Data Collection** — Hospital operational and patient-related datasets were collected and integrated.
-2. **Data Cleaning** — The collected data was cleaned and transformed into a consistent structure.
-3. **KPI Engineering** — Healthcare operational KPIs were calculated using Python and stored in the final dataset.
-4. **Dashboard Planning** — Dashboard layouts, filters, navigation, and actions were planned.
-5. **Dashboard Development** — Four analytical dashboard areas were developed in Tableau.
-6. **Dashboard Integration** — The dashboards were combined into one workbook with filters, navigation, parameter actions, and linking.
-7. **Testing & Validation** — The final workbook was reviewed for KPI calculations, dashboard functionality, filters, navigation, parameter actions, patient-flow analytics, and integration.
-8. **Documentation & Delivery** — Final project files and documentation were organized for delivery.
+1. **Data Collection** — Collected and integrated hospital and admission datasets
+2. **Data Cleaning** — Standardized the data into a consistent structure
+3. **KPI Engineering** — Calculated KPIs in Python
+4. **Dashboard Planning** — Designed layouts, filters, and actions
+5. **Dashboard Development** — Built four dashboards in Tableau
+6. **Dashboard Integration** — Combined them with filters, navigation, and actions
+7. **Testing & Validation** — Reviewed KPIs, filters, navigation, and interactions
+8. **Documentation & Delivery** — Organized files and documentation
 
-# Module 7 — Testing & Validation
+---
 
-Module 7 documentation is available in:
+## Testing & Validation (Module 7)
 
 ```text
-docs/
-└── testing/
-    ├── QA_Checklist.pdf
-    └── Dashboard_Testing_Report.pdf
+docs/testing/
+├── QA_Checklist.pdf
+└── Dashboard_Testing_Report.pdf
 ```
 
-Testing covered:
+Testing covered KPI calculations, all four dashboards, global filters, navigation, parameter actions, patient-flow analytics, and integration. The final review identified no major dashboard functionality issues.
 
-- KPI calculations
-- Healthcare operational metrics
-- Hospital Overview
-- Patient Flow
-- Department Analytics
-- Resource Utilization
-- Global filters
-- Dashboard navigation
-- Parameter actions
-- Dashboard integration
-- Visual and usability review
+---
 
-The final testing review identified no major dashboard functionality issue.
-
-# Project Structure
+## Project Structure
 
 ```text
 Hospital-Operations-Patient-Analytics-
@@ -285,14 +297,17 @@ Hospital-Operations-Patient-Analytics-
 │   ├── module4/
 │   │   ├── dashboard_storyboard.pdf
 │   │   └── medtrack_prototype.twbx
-│   │
 │   ├── module5/
 │   │   └── medtrack_dashboard_v1.twbx
-│   │
 │   └── module6/
 │       └── MedTrack_DV.twbx
 │
 ├── docs/
+│   ├── images/
+│   │   ├── Hospital_Overview.png
+│   │   ├── Patient_Flow.png
+│   │   ├── Department_Analytics.png
+│   │   └── Resource_Utilization.png
 │   └── testing/
 │       ├── QA_Checklist.pdf
 │       └── Dashboard_Testing_Report.pdf
@@ -305,93 +320,45 @@ Hospital-Operations-Patient-Analytics-
     └── neelima-generate_hospital_kpis.py
 ```
 
-The `data/raw_sources/` and `data/reference/` directories contain working/source/reference files used during project preparation and are not listed as milestone deliverables.
+The `data/raw_sources/` and `data/reference/` folders hold working and reference files used during preparation and are not milestone deliverables.
 
-# Tools & Technologies
+---
 
-| Area | Technology |
+## Tech Stack
+
+| Area | Tools |
 |---|---|
 | Data Collection | Python |
-| Data Processing | Pandas, NumPy |
-| Data Cleaning | Python, Jupyter Notebook |
+| Data Processing & Cleaning | Pandas, NumPy, Jupyter Notebook |
 | KPI Engineering | Python |
-| Visualization | Tableau |
-| Dashboard Integration | Tableau Filters, Parameters, Actions |
+| Visualization | Tableau Desktop / Tableau Public |
+| Interactivity | Filters, Parameters, Dashboard Actions |
+| Version Control | Git, GitHub |
 | Documentation | Markdown, PDF |
-| Version Control | Git & GitHub |
 
-# Final Deliverables
+---
 
-## Module 4
+## Project Completion Status
 
-```text
-dashboard/module4/
-├── dashboard_storyboard.pdf
-└── medtrack_prototype.twbx
-```
+| Milestone | Focus | Modules | Status |
+|---|---|---|---|
+| 1 | Data Collection & Preparation | 1–2 | Completed |
+| 2 | KPI Engineering & Dashboard Planning | 3–4 | Completed |
+| 3 | Dashboard Development | 5–6 | Completed |
+| 4 | Testing, Documentation & Delivery | 7–8 | Completed |
 
-## Module 5
+---
 
-```text
-dashboard/module5/
-└── medtrack_dashboard_v1.twbx
-```
+## Links
 
-## Module 6
+- **Live dashboard:** [Tableau Public](https://public.tableau.com/app/profile/alamanda.neelima/viz/MedTrack_DV_17907465161050/HospitalOverview)
+- **This repository:** https://github.com/neelima-alamanda/Hospital-Operations-Patient-Analytics-
+- **Branch:** `neelima`
+- **Final workbook:** `dashboard/module6/MedTrack_DV.twbx`
+- **Original internship repository:** https://github.com/springboardmentor09876x-cmd/Hospital-Operations-Patient-Analytics-
 
-```text
-dashboard/module6/
-└── MedTrack_DV.twbx
-```
+---
 
-## Module 7
+## Author
 
-```text
-docs/testing/
-├── QA_Checklist.pdf
-└── Dashboard_Testing_Report.pdf
-```
-
-## Module 8
-
-```text
-README.md
-```
-
-The README serves as the final project documentation covering dataset sources, KPI definitions, dashboard guide, healthcare operations methodology, project structure, tools, workflow, and delivery information.
-
-# Final Tableau Workbook
-
-The final integrated Tableau workbook is:
-
-```text
-dashboard/module6/MedTrack_DV.twbx
-```
-
-It contains the complete four-dashboard MedTrack_DV suite and its implemented integration features.
-
-# GitHub Repository
-
-**Repository:**  
-https://github.com/springboardmentor09876x-cmd/Hospital-Operations-Patient-Analytics-
-
-**Development/Submission Branch:** `neelima`
-
-The project deliverables are maintained in the `neelima` branch of the repository.
-
-# Tableau Public
-
-Tableau Public deployment is **optional** for this project. The final workbook is provided as the required `.twbx` deliverable.
-
-# Project Completion Status
-
-| Milestone | Modules | Status |
-|---|---|---|
-| Milestone 1 — Data Collection & Preparation | Modules 1–2 | Completed |
-| Milestone 2 — KPI Engineering & Dashboard Planning | Modules 3–4 | Completed |
-| Milestone 3 — Dashboard Development | Modules 5–6 | Completed |
-| Milestone 4 — Testing, Documentation & Delivery | Modules 7–8 | Completed |
-
-# Final Project Outcome
-
-The completed MedTrack_DV project provides a unified Tableau dashboard suite for hospital operations and patient analytics. It combines hospital performance KPIs, patient-flow analysis, department analytics, and resource utilization into an integrated interactive dashboard solution.
+**Neelima Alamanda** · [GitHub](https://github.com/neelima-alamanda) · [Tableau Public](https://public.tableau.com/app/profile/alamanda.neelima)
